@@ -36,7 +36,6 @@ import javax.media.Time;
 import javax.media.protocol.PushBufferDataSource;
 import javax.media.protocol.PushBufferStream;
 
-@SuppressWarnings("restriction")
 public class DataSource extends PushBufferDataSource {
 
 	protected Object[] controls = new Object[0];
@@ -95,9 +94,9 @@ public class DataSource extends PushBufferDataSource {
 		return controls;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Object getControl(String controlType) {
 		try {
+			@SuppressWarnings("rawtypes")
 			Class cls = Class.forName(controlType);
 			Object cs[] = getControls();
 			for (int i = 0; i < cs.length; i++) {

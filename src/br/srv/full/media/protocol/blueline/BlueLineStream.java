@@ -37,14 +37,12 @@ import javax.media.Buffer;
 import javax.media.Control;
 import javax.media.Format;
 import javax.media.format.AudioFormat;
-import javax.media.format.JPEGFormat;
 import javax.media.format.RGBFormat;
 import javax.media.format.VideoFormat;
 import javax.media.protocol.BufferTransferHandler;
 import javax.media.protocol.ContentDescriptor;
 import javax.media.protocol.PushBufferStream;
 
-@SuppressWarnings("restriction")
 public class BlueLineStream implements PushBufferStream, Runnable {
 
 	protected ContentDescriptor cd = new ContentDescriptor(
@@ -63,7 +61,7 @@ public class BlueLineStream implements PushBufferStream, Runnable {
 	public BlueLineStream() {
 		int x, y, pos, revpos;
 
-		//size = new Dimension(320, 240);
+		// size = new Dimension(320, 240);
 		size = new Dimension(960, 536);
 		maxDataLength = size.width * size.height * 3;
 
@@ -111,7 +109,7 @@ public class BlueLineStream implements PushBufferStream, Runnable {
 	 * PushBufferStream
 	 ***************************************************************************/
 
-	int seqNo = 0; 
+	int seqNo = 0;
 
 	public Format getFormat() {
 		return rgbFormat;
@@ -178,7 +176,7 @@ public class BlueLineStream implements PushBufferStream, Runnable {
 
 			if (started && transferHandler != null) {
 				transferHandler.transferData(this);
-				try { 
+				try {
 					Thread.sleep(10);
 				} catch (InterruptedException ise) {
 				}
@@ -192,9 +190,9 @@ public class BlueLineStream implements PushBufferStream, Runnable {
 		return controls;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Object getControl(String controlType) {
 		try {
+			@SuppressWarnings("rawtypes")
 			Class cls = Class.forName(controlType);
 			Object cs[] = getControls();
 			for (int i = 0; i < cs.length; i++) {
